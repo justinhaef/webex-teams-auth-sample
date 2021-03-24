@@ -31,9 +31,9 @@ function codeClick() {
 	var appRedirectUri=document.getElementById('redirectUri').value;
 
 	//Build the request URL.  The base URL and next 4 items are typically always the same for Webex Teams web apps
-	var requestUrl = 'https://api.ciscospark.com/v1/authorize?' + //Webex Teams OAuth2 base URL
+	var requestUrl = 'https://webexapis.com/v1/authorize?' + //Webex Teams OAuth2 base URL
 		'response_type=code&' + // Requesting the OAuth2 'Authentication Code' flow
-		'scope='+ encodeURIComponent('spark:rooms_read') + '&' + // Requested permission, i.e. Webex Teams room info
+		'scope='+ encodeURIComponent('meeting:admin_schedule_read') + '&' + // Requested permission, i.e. Webex Teams room info
 		// The following items are provided by the developer in the source code/config or generated dynamically at run time
 		'state=' + encodeURIComponent(randomString(63)) + '&' +	// Random string for OAuth2 nonce replay protection
 		'client_id=' + encodeURIComponent(appClientId) + '&' + // The custom app Client ID
@@ -73,7 +73,7 @@ function tokenClick() {
 			} else alert('Error requesting access token: ' + xhttp.statusText)
  		}
 	}
-	xhttp.open('POST', 'https://api.ciscospark.com/v1/access_token', true); // Initialize the HTTP request object for POST to the access token URL
+	xhttp.open('POST', 'https://webexapis.com/v1/access_token', true); // Initialize the HTTP request object for POST to the access token URL
 	// Build the HTML form request body 
 	var body = 'grant_type=authorization_code&'+  // This is an OAuth2 Authorization Code request
 		'redirect_uri='+encodeURIComponent(appRedirectUri)+'&'+ // Same custom app Redirect URI 
